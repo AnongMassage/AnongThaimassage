@@ -3,7 +3,7 @@ import { Link } from 'wouter';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AnimatedSection } from '@/components/animated-section';
 import { MapPin, Phone, Mail, Instagram, Facebook, Clock, Menu, X, ArrowRight, CheckCircle2 } from 'lucide-react';
-import anongLogo from '@assets/anong_logo.jpg';
+import anongLogo from '@assets/anong_logo_new.png';
 import heroBg from '@assets/hero_massage_room.jpg';
 import aboutImg from '@assets/about_masseuse.jpg';
 
@@ -146,7 +146,7 @@ export default function Home() {
       }`}>
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <img src={anongLogo} alt="Anong Thai-Massage Logo" className="w-12 h-12 object-cover rounded-full shadow-sm" />
+            <img src={anongLogo} alt="Anong Thai-Massage Logo" className="w-12 h-12 object-contain drop-shadow-sm" />
             <span className={`font-display text-xl font-bold tracking-wide ${isScrolled ? 'text-primary' : 'text-primary md:text-white'}`}>
               Anong Thai-Massage
             </span>
@@ -483,87 +483,136 @@ export default function Home() {
       {/* Opening Hours & Contact Section */}
       <AnimatedSection id="kontakt" className="py-24 bg-card">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            
-            {/* Left: Info */}
-            <div className="space-y-12">
-              <div>
-                <h2 className="font-display text-4xl text-primary font-medium mb-8">Kontakt & Öffnungszeiten</h2>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                  {/* Hours */}
-                  <div className="bg-background p-6 rounded-2xl shadow-sm border border-border">
-                    <h3 className="font-medium text-lg mb-4 flex items-center gap-2"><Clock size={20} className="text-secondary" /> Öffnungszeiten</h3>
-                    <ul className="space-y-2 text-sm text-foreground/80">
-                      <li className={`flex justify-between py-1 ${today === 1 ? 'font-bold text-primary' : ''}`}><span>Montag</span> <span>10:00 – 20:00</span></li>
-                      <li className={`flex justify-between py-1 ${today === 2 ? 'font-bold text-accent' : 'text-foreground/50'}`}><span>Dienstag</span> <span>Ruhetag</span></li>
-                      <li className={`flex justify-between py-1 ${today === 3 ? 'font-bold text-primary' : ''}`}><span>Mittwoch</span> <span>10:00 – 20:00</span></li>
-                      <li className={`flex justify-between py-1 ${today === 4 ? 'font-bold text-primary' : ''}`}><span>Donnerstag</span> <span>10:00 – 20:00</span></li>
-                      <li className={`flex justify-between py-1 ${today === 5 ? 'font-bold text-primary' : ''}`}><span>Freitag</span> <span>10:00 – 20:00</span></li>
-                      <li className={`flex justify-between py-1 ${today === 6 ? 'font-bold text-primary' : ''}`}><span>Samstag</span> <span>10:00 – 20:00</span></li>
-                      <li className={`flex justify-between py-1 ${today === 0 ? 'font-bold text-primary' : ''}`}><span>Sonn- & Feiertage</span> <span>10:00 – 19:00</span></li>
-                    </ul>
-                  </div>
 
-                  {/* Contact details */}
-                  <div className="space-y-6">
-                    <a href="https://maps.google.com/?q=Metzgerstrasse+12,+72764+Reutlingen" target="_blank" rel="noreferrer" className="flex items-start gap-4 p-4 bg-background rounded-2xl shadow-sm border border-border hover:border-secondary/50 transition-colors group">
-                      <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center shrink-0 group-hover:bg-secondary/10 transition-colors">
-                        <MapPin size={20} className="text-primary group-hover:text-secondary" />
-                      </div>
-                      <div>
-                        <p className="font-medium mb-1">Adresse</p>
-                        <p className="text-sm text-foreground/70">Metzgerstrasse 12 (1. Etage)<br/>72764 Reutlingen</p>
-                      </div>
-                    </a>
-                    
-                    <a href="tel:01726390515" className="flex items-start gap-4 p-4 bg-background rounded-2xl shadow-sm border border-border hover:border-secondary/50 transition-colors group">
-                      <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center shrink-0 group-hover:bg-secondary/10 transition-colors">
-                        <Phone size={20} className="text-primary group-hover:text-secondary" />
-                      </div>
-                      <div>
-                        <p className="font-medium mb-1">Telefon</p>
-                        <p className="text-sm text-foreground/70">0172 639 05 15</p>
-                      </div>
-                    </a>
+          {/* Section heading */}
+          <div className="text-center mb-12">
+            <h2 className="font-display text-4xl md:text-5xl text-primary font-medium mb-3">Kontakt & Öffnungszeiten</h2>
+            <p className="text-foreground/60 text-lg">Besuchen Sie uns in der Metzgerstrasse 12 – direkt im Herzen von Reutlingen.</p>
+          </div>
 
-                    <a href="mailto:anong.thaimassage@web.de" className="flex items-start gap-4 p-4 bg-background rounded-2xl shadow-sm border border-border hover:border-secondary/50 transition-colors group">
-                      <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center shrink-0 group-hover:bg-secondary/10 transition-colors">
-                        <Mail size={20} className="text-primary group-hover:text-secondary" />
-                      </div>
-                      <div>
-                        <p className="font-medium mb-1">E-Mail</p>
-                        <p className="text-sm text-foreground/70 break-all">anong.thaimassage@web.de</p>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
+          {/* Full-width map */}
+          <div className="w-full h-[420px] rounded-3xl overflow-hidden shadow-md border border-border mb-14">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2635.0!2d9.2145!3d48.4926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4799c1c7a4b4e567%3A0x0!2sMetzgerstra%C3%9Fe+12%2C+72764+Reutlingen!5e0!3m2!1sde!2sde!4v1!"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
 
-              {/* Social placeholders */}
-              <div>
-                <p className="font-medium mb-4">Folgen Sie uns</p>
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-full bg-background border border-border flex items-center justify-center text-foreground hover:text-secondary hover:border-secondary transition-colors cursor-pointer shadow-sm">
-                    <Instagram size={24} />
-                  </div>
-                  <div className="w-12 h-12 rounded-full bg-background border border-border flex items-center justify-center text-foreground hover:text-secondary hover:border-secondary transition-colors cursor-pointer shadow-sm">
-                    <Facebook size={24} />
-                  </div>
-                </div>
-              </div>
+          {/* Info cards below map */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            {/* Opening Hours */}
+            <div className="bg-background rounded-3xl p-8 border border-border shadow-sm">
+              <h3 className="font-display text-xl text-primary font-medium mb-6 flex items-center gap-3">
+                <span className="w-9 h-9 rounded-full bg-secondary/10 flex items-center justify-center shrink-0">
+                  <Clock size={18} className="text-secondary" />
+                </span>
+                Öffnungszeiten
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  { day: 'Montag', hours: '10:00 – 20:00 Uhr', idx: 1 },
+                  { day: 'Dienstag', hours: 'Ruhetag', idx: 2, closed: true },
+                  { day: 'Mittwoch', hours: '10:00 – 20:00 Uhr', idx: 3 },
+                  { day: 'Donnerstag', hours: '10:00 – 20:00 Uhr', idx: 4 },
+                  { day: 'Freitag', hours: '10:00 – 20:00 Uhr', idx: 5 },
+                  { day: 'Samstag', hours: '10:00 – 20:00 Uhr', idx: 6 },
+                  { day: 'So. & Feiertage', hours: '10:00 – 19:00 Uhr', idx: 0 },
+                ].map(({ day, hours, idx, closed }) => (
+                  <li
+                    key={day}
+                    className={`flex justify-between items-center py-2.5 border-b border-border/60 last:border-0 text-sm ${
+                      closed
+                        ? 'text-foreground/35'
+                        : today === idx
+                        ? 'font-semibold text-primary'
+                        : 'text-foreground/80'
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      {today === idx && !closed && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-secondary inline-block shrink-0" />
+                      )}
+                      {today !== idx && <span className="w-1.5 h-1.5 inline-block shrink-0" />}
+                      {day}
+                    </span>
+                    <span className={closed ? 'italic' : ''}>{hours}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {/* Right: Map */}
-            <div className="h-[400px] lg:h-auto rounded-3xl overflow-hidden shadow-md border border-border relative">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2635.0!2d9.2145!3d48.4926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4799c1c7a4b4e567%3A0x0!2sMetzgerstra%C3%9Fe+12%2C+72764+Reutlingen!5e0!3m2!1sde!2sde!4v1!"
-                width="100%" 
-                height="100%" 
-                style={{ border: 0, position: 'absolute', inset: 0 }} 
-                allowFullScreen 
-                loading="lazy"
-              ></iframe>
+            {/* Contact Details */}
+            <div className="bg-background rounded-3xl p-8 border border-border shadow-sm flex flex-col gap-6">
+              <h3 className="font-display text-xl text-primary font-medium flex items-center gap-3">
+                <span className="w-9 h-9 rounded-full bg-secondary/10 flex items-center justify-center shrink-0">
+                  <MapPin size={18} className="text-secondary" />
+                </span>
+                So finden Sie uns
+              </h3>
+
+              <a
+                href="https://maps.google.com/?q=Metzgerstrasse+12,+72764+Reutlingen"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-start gap-4 group"
+              >
+                <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center shrink-0 group-hover:bg-secondary/10 transition-colors mt-0.5">
+                  <MapPin size={18} className="text-primary group-hover:text-secondary transition-colors" />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-foreground/50 mb-1">Adresse</p>
+                  <p className="text-foreground font-medium leading-relaxed">Metzgerstrasse 12<br /><span className="text-sm text-foreground/70">1. Etage · 72764 Reutlingen</span></p>
+                </div>
+              </a>
+
+              <a href="tel:01726390515" className="flex items-start gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center shrink-0 group-hover:bg-secondary/10 transition-colors mt-0.5">
+                  <Phone size={18} className="text-primary group-hover:text-secondary transition-colors" />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-foreground/50 mb-1">Telefon</p>
+                  <p className="text-foreground font-medium text-lg tracking-wide">0172 639 05 15</p>
+                </div>
+              </a>
+
+              <a href="mailto:anong.thaimassage@web.de" className="flex items-start gap-4 group">
+                <div className="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center shrink-0 group-hover:bg-secondary/10 transition-colors mt-0.5">
+                  <Mail size={18} className="text-primary group-hover:text-secondary transition-colors" />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-foreground/50 mb-1">E-Mail</p>
+                  <p className="text-foreground font-medium">anong.thaimassage@web.de</p>
+                </div>
+              </a>
+            </div>
+
+            {/* Social + closing note */}
+            <div className="bg-background rounded-3xl p-8 border border-border shadow-sm flex flex-col justify-between gap-8">
+              <div>
+                <h3 className="font-display text-xl text-primary font-medium mb-6">Folgen Sie uns</h3>
+                <p className="text-sm text-foreground/60 mb-6 leading-relaxed">
+                  Bleiben Sie auf dem Laufenden über Angebote, Neuigkeiten und Einblicke aus unserem Salon.
+                </p>
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-card border border-border flex items-center justify-center text-foreground/60 hover:text-secondary hover:border-secondary transition-colors cursor-pointer shadow-sm">
+                    <Instagram size={22} />
+                  </div>
+                  <div className="w-12 h-12 rounded-2xl bg-card border border-border flex items-center justify-center text-foreground/60 hover:text-secondary hover:border-secondary transition-colors cursor-pointer shadow-sm">
+                    <Facebook size={22} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-border">
+                <p className="text-sm text-foreground/50 leading-relaxed italic">
+                  „Alle Anwendungen sind auch als Gutschein erhältlich."
+                </p>
+              </div>
             </div>
 
           </div>
@@ -574,7 +623,7 @@ export default function Home() {
       <footer className="bg-primary text-primary-foreground py-12 mt-auto">
         <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
           <div className="flex items-center gap-3">
-            <img src={anongLogo} alt="Logo" className="w-10 h-10 object-cover rounded-full" />
+            <img src={anongLogo} alt="Logo" className="w-10 h-10 object-contain brightness-0 invert" />
             <span className="font-display text-lg font-bold">Anong Thai-Massage</span>
           </div>
           
