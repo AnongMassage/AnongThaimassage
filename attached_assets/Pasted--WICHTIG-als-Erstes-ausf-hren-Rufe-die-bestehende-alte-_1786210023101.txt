@@ -1,0 +1,110 @@
+**WICHTIG – als Erstes ausführen:** Rufe die bestehende alte Website unter **https://www.thaimassagereutlingen.de/** sowie ihre Unterseiten **/anwendungen**, **/plans-pricing**, **/über-uns** und **/kontakt** live auf und analysiere sie. Ziehe von dort alle relevanten Inhalte direkt heraus: Texte, Leistungen, Preise, Kontaktdaten, Öffnungszeiten und Fotos. Übernimm diese Inhalte direkt in die neue Website (Texte dabei in eigenen, neu formulierten Worten, Fakten wie Preise/Adresse/Öffnungszeiten 1:1). Schau dir die Seite wirklich selbst an, verlasse dich nicht nur auf die folgende Zusammenfassung — falls sich auf der Live-Seite aktuellere oder zusätzliche Informationen finden als unten aufgeführt, nutze diese.
+
+Erstelle eine moderne, elegante One-Page-Website für "Anong Thai-Massage", einen traditionellen Thai-Massagesalon in Reutlingen, Deutschland. Die unten aufgeführten Daten sind eine Zusammenfassung dessen, was aktuell auf der alten Seite steht, und dienen als Fallback, falls der Live-Abruf der URL aus irgendeinem Grund nicht funktioniert.
+
+## Über das Unternehmen
+- Name: Anong Thai-Massage
+- Inhaberin: Saranya
+- Adresse: Metzgerstrasse 12 (im 1. Stock), 72764 Reutlingen (Hinweis: bitte PLZ vor Veröffentlichung nochmal gegenchecken)
+- Telefon: 0172 639 05 15
+- E-Mail: anong.thaimassage@web.de
+- Öffnungszeiten:
+  - Montag und Mittwoch bis Samstag: 10:00 – 20:00 Uhr
+  - Sonn- und Feiertag: 10:00 – 19:00 Uhr
+  - Dienstag: geschlossen
+
+## Design & Ästhetik
+Die Seite soll sich hochwertig, ruhig und einladend anfühlen, wie man es von einem gepflegten Wellness- und Massagesalon erwartet:
+- Warme, erdige Farbpalette: Beige, sanftes Gold, Terrakotta, Dunkelgrün, Creme als Basis, dazu dezente Akzente in Gold oder Bronze
+- Elegante Typografie: eine ruhige Serifenschrift für Überschriften (z. B. im Stil von Playfair Display oder Cormorant), eine klare, gut lesbare Sans-Serif für Fließtext (z. B. Lato oder Inter)
+- Viel Weißraum, großzügige Abstände, kein überladenes Layout
+- Sanfte Übergänge und dezente Scroll-Animationen (Fade-in beim Scrollen), aber nichts Verspieltes oder Überladenes
+- Ruhige, hochwertige Bildsprache passend zum tatsächlichen Salon: warmer Wartebereich, gemütliche Behandlungsräume, Fußreflexzonen-Sessel, dekorative Thai-Elemente. Nutze dafür, wo möglich, die realen Fotos von der alten Website (aus der Galerie der Über-uns-Seite), ansonsten thematisch passende Platzhalterbilder
+- Vollständig responsive, mobile-first, da viele Kunden über das Handy einen Termin buchen werden
+
+## Struktur der Seite (One-Pager mit Anchor-Navigation)
+
+1. **Header / Navigation**
+   Fixiertes, transparentes bis leicht abgedunkeltes Menü mit Logo/Name "Anong Thai-Massage" und Links zu: Über uns, Anwendungen, Preise, Termin buchen, Kontakt. Deutlich sichtbarer "Termin buchen"-Button im Header.
+
+2. **Hero-Sektion**
+   Ruhiges Hintergrundbild oder sanfter Farbverlauf, Name des Salons, Claim im Stil von "Ihre kleine Auszeit beginnt hier" sowie ein klarer Call-to-Action-Button "Termin buchen", der zur Buchungssektion scrollt.
+
+3. **Über uns**
+   Kurzer, warmer Willkommenstext (in eigenen Worten formuliert, nicht 1:1 von der alten Seite kopiert): Anong Thai-Massage steht für professionelle, traditionelle Thai-Massagen in Reutlingen, ein Ort zum Abschalten vom stressigen Alltag, persönlich geführt von Saranya.
+
+4. **Anwendungen / Leistungen**
+   Kartenraster mit den tatsächlichen Behandlungsarten, jeweils mit eigener kurzer Beschreibung (in eigenen Worten):
+   - Traditionelle Thai-Massage – klassische Druckpunkt- und Dehnmassage aus Thailand zur Lockerung von Verspannungen
+   - Thai-Ölmassage – wohltuende Ölmassage zur tiefen Entspannung
+   - Thai-Aromamassage (mit warmem Öl)
+   - Thai-Sport-Massage
+   - Hot-Stone-Massage
+   - Fußreflexzonenmassage
+   - Kopf-, Schulter- und Nackenmassage
+   - Kombi-Massage (Thai-Öl- und Fußmassage)
+   - Spezial-Massage mit vier Händen
+   - Paarmassage
+
+5. **Preise**
+   Übersichtliche Preistabelle, gruppiert nach Behandlung und Dauer, mit den tatsächlichen Preisen von der alten Seite:
+
+   | Behandlung | Dauer | Preis |
+   |---|---|---|
+   | Thai-Ölmassage | 60 Min | 45 € |
+   | Thai-Ölmassage | 90 Min | 65 € |
+   | Thai-Ölmassage | 120 Min | 85 € |
+   | Thai-Aromamassage (warmes Öl) | 60 Min | 47 € |
+   | Thai-Aromamassage (warmes Öl) | 90 Min | 68 € |
+   | Thai-Aromamassage (warmes Öl) | 120 Min | 89 € |
+   | Thai-Sport-Massage | 60 Min | 47 € |
+   | Thai-Sport-Massage | 90 Min | 68 € |
+   | Thai-Sport-Massage | 120 Min | 89 € |
+   | Hot-Stone-Massage | 60 Min | 50 € |
+   | Hot-Stone-Massage | 90 Min | 73 € |
+   | Kombi-Massage (Öl- und Fußmassage) | 90 Min | 65 € |
+   | Kombi-Massage (Öl- und Fußmassage) | 120 Min | 85 € |
+   | Spezial-Massage, vier Hände | 60 Min | 89 € |
+   | Spezial-Massage, vier Hände | 90 Min | 127 € |
+   | Kopf-Schulter-Nacken | 30 Min | 25 € |
+   | Kopf-Schulter-Nacken | 60 Min | 45 € |
+   | Fußmassage | 30 Min | 25 € |
+   | Fußmassage | 60 Min | 45 € |
+   | Paarmassage | 30 Min | 48 € |
+   | Paarmassage | 60 Min | 86 € |
+   | Paarmassage | 90 Min | 124 € |
+   | Paarmassage | 120 Min | 162 € |
+
+   Hinweis ergänzen: "Alle Anwendungen sind auch als Gutschein erhältlich. Zahlung per PayPal ist derzeit leider nicht möglich."
+
+6. **Terminbuchung (sehr wichtig, zentrales Feature)**
+   Eine funktionierende Buchungssektion mit Formular, das folgende Felder enthält:
+   - Name
+   - E-Mail
+   - Telefonnummer
+   - Gewünschte Behandlung (Dropdown aus der Leistungsliste inkl. Dauer)
+   - Gewünschtes Datum (Datepicker, unter Berücksichtigung des Ruhetags Dienstag)
+   - Gewünschte Uhrzeit (Zeitslots passend zu den echten Öffnungszeiten: Mo/Mi–Sa 10:00–20:00 Uhr, So/Feiertag 10:00–19:00 Uhr, in 30-Minuten-Schritten)
+   - Optionale Nachricht
+
+   **Technische Umsetzung – WICHTIG, unbedingt so umsetzen:** Kein eigenes Backend und keine Datenbank bauen. Das Formular wird über Netlify Forms verarbeitet, da die Seite später auf Netlify gehostet wird. Baue das Formular als natives HTML-`<form>`-Element mit dem Attribut `data-netlify="true"` und `name="buchung"`, sowie einem versteckten Feld `<input type="hidden" name="form-name" value="buchung" />`. Kein `fetch`/`axios`-Call an eine eigene API, kein `onSubmit`, der Daten an ein selbstgebautes Backend schickt. Nach dem Absenden soll eine freundliche Bestätigungsseite oder -meldung erscheinen ("Vielen Dank für Ihre Anfrage, wir melden uns zur Bestätigung").
+
+7. **Öffnungszeiten**
+   Übersichtliche Tabelle mit den echten Öffnungszeiten (siehe oben), Dienstag deutlich als Ruhetag kennzeichnen.
+
+8. **Standort / Kontakt**
+   Adresse (Metzgerstrasse 12, 1. Stock, 72764 Reutlingen), eingebettete Google-Maps-Karte, echte Telefonnummer (0172 639 05 15) und E-Mail-Adresse (anong.thaimassage@web.de). Kein funktionierender Social-Media-Link von der alten Seite übernehmbar — Social-Media-Icons nur als optionale Platzhalter vorsehen, falls später Accounts ergänzt werden.
+
+9. **Footer**
+   Kurzer Footer mit Logo/Name, Copyright, Links zu Impressum und Datenschutz (als einfache Platzhalterseiten anlegen, da diese in Deutschland rechtlich Pflicht sind; Inhalte der alten Impressums-/Datenschutzseite können als Ausgangspunkt dienen, sollten aber juristisch geprüft werden).
+
+## Technische Anforderungen
+- **Baue die Seite als reines statisches HTML/CSS/JavaScript-Projekt, kein React und kein Build-Framework.** Grund: Die Seite wird später auf Netlify gehostet und nutzt Netlify Forms für die Buchungsanfragen. Netlify erkennt Formulare nur zuverlässig, wenn sie als statisches HTML zum Zeitpunkt des Deployments vorliegen, nicht wenn sie erst zur Laufzeit per JavaScript/React gerendert werden. Reines HTML/CSS/JS vermeidet dieses Problem komplett und hält die Seite zusätzlich einfach und wartungsarm.
+- Kein eigenes Backend, keine Datenbank, kein Server-Code (siehe Punkt 6, Terminbuchung)
+- Vollständig responsive für Smartphone, Tablet und Desktop
+- Schnelle Ladezeiten, optimierte Bilder
+- Barrierefreiheit beachten (ausreichende Kontraste, sinnvolle Alt-Texte)
+- Alle Texte in eigenen Formulierungen schreiben, nicht wortwörtlich von der alten Seite kopieren (nur Fakten wie Preise, Adresse, Öffnungszeiten 1:1 übernehmen)
+- Struktur des Projekts so anlegen, dass sie direkt auf Netlify deploybar ist (z. B. eine `index.html` im Root-Verzeichnis, dazugehörige `css/` und `js/`-Ordner, keine serverseitige Logik)
+
+Baue die Seite jetzt Schritt für Schritt auf: zuerst Struktur und Layout, dann Styling mit den echten Inhalten, dann das Netlify-Forms-kompatible Buchungsformular.

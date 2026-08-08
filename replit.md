@@ -1,36 +1,50 @@
-# [Project name]
+# Anong Thai-Massage
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+Moderne, elegante One-Page-Website für Anong Thai-Massage, einen traditionellen Thai-Massagesalon in Reutlingen. Enthält Leistungsübersicht, Preistabelle, Netlify-Forms-Buchungsformular, Öffnungszeiten, Kontakt und Standort.
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+- `pnpm --filter @workspace/anong-thai run dev` — Website starten (Port via $PORT)
+- `pnpm run typecheck` — TypeScript-Check über alle Pakete
+- `pnpm run build` — Typecheck + Build aller Pakete
 
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
-- DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+- Frontend: React + Vite, Tailwind CSS v4, Framer Motion
+- Fonts: Cormorant Garamond (Überschriften), Inter (Fließtext) via Google Fonts
+- Routing: Wouter (/, /impressum, /datenschutz)
+- Buchungsformular: Netlify Forms (data-netlify="true", kein eigenes Backend)
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/anong-thai/src/pages/home.tsx` — Hauptseite (alle Sektionen: Hero, Über uns, Anwendungen, Preise, Buchung, Öffnungszeiten, Kontakt)
+- `artifacts/anong-thai/src/pages/impressum.tsx` — Impressum (Platzhalter)
+- `artifacts/anong-thai/src/pages/datenschutz.tsx` — Datenschutz (Platzhalter)
+- `artifacts/anong-thai/src/App.tsx` — Router-Setup (wouter)
+- `artifacts/anong-thai/src/index.css` — CSS-Theme (warme erdige Palette)
+- `artifacts/anong-thai/index.html` — Enthält versteckte Netlify-Form-Definition
+- `attached_assets/anong_logo.jpg` — Logo-Bild (importiert via @assets alias)
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Statische Frontend-App ohne eigenes Backend — Buchungsformular läuft über Netlify Forms
+- Netlify Forms: versteckte HTML-Form in index.html für Netlify-Crawler-Erkennung, React-Formular sendet via fetch mit URLSearchParams-Encoding
+- Dienstag ist als Ruhetag implementiert (Datepicker disabled, Zeitslots leer)
+- Zeitslots werden dynamisch basierend auf Wochentag berechnet (Mo/Mi–Sa 10–20 Uhr, So 10–19 Uhr)
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+One-Page-Website mit Anchor-Navigation für Anong Thai-Massage Reutlingen:
+- Sticky transparenter Header mit Logo und "Termin buchen"-Button
+- Hero-Sektion mit KI-generiertem Bild
+- Über-uns mit warmem Willkommenstext
+- Anwendungen-Karten (10 Behandlungen)
+- Preistabelle (gruppiert nach Behandlung)
+- Buchungsformular (Netlify Forms, keine Dienstag-Termine, korrekte Zeitslots)
+- Öffnungszeiten (heute hervorgehoben)
+- Kontakt + Google Maps
+- Footer + Impressum/Datenschutz-Platzhalterseiten
 
 ## User preferences
 
@@ -38,7 +52,8 @@ _Populate as you build — explicit user instructions worth remembering across s
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- Template-Literal-Interpolationen (\${}) dürfen in tsx-Dateien NICHT escaped werden (\${}) — Babel lehnt \${ ab
+- Netlify Forms benötigt beim Deploy auf Netlify eine statische Form-Definition in index.html (bereits vorhanden)
 
 ## Pointers
 

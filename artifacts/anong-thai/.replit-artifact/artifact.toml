@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Anong Thai-Massage"
+description = "Moderne One-Page-Website für Anong Thai-Massage, einen traditionellen Thai-Massagesalon in Reutlingen. Enthält Leistungsübersicht, Preistabelle, Buchungsformular (Netlify Forms), Öffnungszeiten, Kontakt und Standort. Keine Backend-Abhängigkeit."
+version = "1.0.0"
+id = "artifacts/anong-thai"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23366
+
+[services.development]
+run = "pnpm --filter @workspace/anong-thai run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/anong-thai", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/anong-thai/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23366"
+BASE_PATH = "/"
