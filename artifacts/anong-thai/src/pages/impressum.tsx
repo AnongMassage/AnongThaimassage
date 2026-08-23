@@ -12,7 +12,7 @@ export default function Impressum() {
         <div className="mb-12 flex justify-center">
           <img src={anongLogo} alt="Anong Thai-Massage Logo" className="w-20 h-20 object-contain" />
         </div>
-        <h1 className="font-display text-4xl text-primary font-medium mb-8 text-center">Impressum</h1>
+        <h1 className="font-display text-primary font-medium mb-8 text-center text-[33px]">Impressum</h1>
 
         <div className="space-y-8 text-foreground/80 leading-relaxed">
           <section>
