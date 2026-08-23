@@ -7,16 +7,16 @@ import anongLogo from '@assets/anong_logo_new.png';
 import heroBg from '@assets/hero_massage_room.jpg';
 import aboutImg from '@assets/IMG_4277.JPG';
 import applicationsImg from '@assets/applications_wellness.jpg';
-import traditionalThaiMassageImg from '@assets/treatments/traditional_thai_massage.jpg';
-import thaiOilMassageImg from '@assets/treatments/thai_oil_massage.jpg';
-import thaiAromaMassageImg from '@assets/treatments/thai_aroma_massage.jpg';
-import thaiSportMassageImg from '@assets/treatments/thai_sport_massage.jpg';
-import hotStoneMassageImg from '@assets/treatments/hot_stone_massage.jpg';
-import footReflexologyImg from '@assets/treatments/foot_reflexology.jpg';
-import headNeckMassageImg from '@assets/treatments/head_neck_massage.jpg';
-import combinationMassageImg from '@assets/treatments/combination_massage.jpg';
-import fourHandsMassageImg from '@assets/treatments/four_hands_massage.jpg';
-import couplesMassageImg from '@assets/treatments/couples_massage.jpg';
+import traditionalThaiMassageImg from '@assets/treatments-women/traditional_thai_massage_women.jpg';
+import thaiOilMassageImg from '@assets/treatments-women/thai_oil_massage_women.jpg';
+import thaiAromaMassageImg from '@assets/treatments-women/thai_aroma_massage_women.jpg';
+import thaiSportMassageImg from '@assets/treatments-women/thai_sport_massage_women.jpg';
+import hotStoneMassageImg from '@assets/treatments-women/hot_stone_massage_women.jpg';
+import footReflexologyImg from '@assets/treatments-women/foot_reflexology_women.jpg';
+import headNeckMassageImg from '@assets/treatments-women/head_neck_massage_women.jpg';
+import combinationMassageImg from '@assets/treatments-women/combination_massage_women.jpg';
+import fourHandsMassageImg from '@assets/treatments-women/four_hands_massage_women.jpg';
+import couplesMassageImg from '@assets/treatments-women/couples_massage_women.jpg';
 
 const TREATMENTS = [
   { id: 1, name: 'Traditionelle Thai-Massage', desc: 'Klassische Druckpunkt- und Dehnmassage, die Verspannungen löst und die Lebensenergie neu ausbalanciert.', image: traditionalThaiMassageImg },
