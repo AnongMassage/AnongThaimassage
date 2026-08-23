@@ -707,7 +707,7 @@ export default function Home() {
                           min={todayStr}
                           onChange={handleDateChange}
                           onKeyDown={(e) => e.preventDefault()} // prevent manual typing of invalid dates
-                          className="box-border w-full max-w-full min-w-0 px-4 py-3 rounded-xl border border-border bg-card focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-shadow"
+                          className="box-border w-full max-w-full min-w-0 px-4 py-3 rounded-xl border border-border bg-card focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-shadow appearance-none"
                         />
                         {selectedDayOfWeek === 2 && (
                           <p className="text-destructive text-xs mt-1">
