@@ -6,18 +6,19 @@ import { MapPin, Phone, Mail, Instagram, Facebook, Clock, Menu, X, ArrowRight, C
 import anongLogo from '@assets/anong_logo_new.png';
 import heroBg from '@assets/hero_massage_room.jpg';
 import aboutImg from '@assets/IMG_4277.JPG';
+import applicationsImg from '@assets/applications_wellness.jpg';
 
 const TREATMENTS = [
   { id: 1, name: 'Traditionelle Thai-Massage', desc: 'Klassische Druckpunkt- und Dehnmassage, die Verspannungen löst und die Lebensenergie neu ausbalanciert.' },
-  { id: 2, name: 'Thai-Ölmassage', desc: 'Sanfte Ölmassage für tiefe Entspannung von Körper und Geist.', icon: '🌿' },
-  { id: 3, name: 'Thai-Aromamassage', desc: 'Wohltuende Ölmassage mit warmen, aromatischen Ölen für alle Sinne.', icon: '🌸' },
+  { id: 2, name: 'Thai-Ölmassage', desc: 'Sanfte Ölmassage für tiefe Entspannung von Körper und Geist.' },
+  { id: 3, name: 'Thai-Aromamassage', desc: 'Wohltuende Ölmassage mit warmen, aromatischen Ölen für alle Sinne.' },
   { id: 4, name: 'Thai-Sport-Massage', desc: 'Intensive Tiefenmassage für aktive Menschen — ideal zur Regeneration.' },
-  { id: 5, name: 'Hot-Stone-Massage', desc: 'Wärme trifft Entspannung: erhitzte Basaltsteine lösen tief sitzende Muskelverspannungen.', icon: '🪨' },
-  { id: 6, name: 'Fußreflexzonenmassage', desc: 'Gezielte Reize an den Fußpunkten, die den gesamten Körper vitalisieren.', icon: '👣' },
-  { id: 7, name: 'Kopf-, Schulter- & Nackenmassage', desc: 'Gezielte Entspannung für die am stärksten beanspruchten Körperzonen.', icon: '🧘‍♀️' },
-  { id: 8, name: 'Kombi-Massage (Öl + Fuß)', desc: 'Die beste Kombination: genießen Sie Öl- und Fußmassage in einer Behandlung.', icon: '✨' },
-  { id: 9, name: 'Spezial-Massage mit vier Händen', desc: 'Außergewöhnliches Erlebnis: zwei Therapeuten, vollkommene Harmonie.', icon: '👐' },
-  { id: 10, name: 'Paarmassage', desc: 'Entspannen Sie gemeinsam — das perfekte Geschenk für zwei.', icon: '❤️' },
+  { id: 5, name: 'Hot-Stone-Massage', desc: 'Wärme trifft Entspannung: erhitzte Basaltsteine lösen tief sitzende Muskelverspannungen.' },
+  { id: 6, name: 'Fußreflexzonenmassage', desc: 'Gezielte Reize an den Fußpunkten, die den gesamten Körper vitalisieren.' },
+  { id: 7, name: 'Kopf-, Schulter- & Nackenmassage', desc: 'Gezielte Entspannung für die am stärksten beanspruchten Körperzonen.' },
+  { id: 8, name: 'Kombi-Massage (Öl + Fuß)', desc: 'Die beste Kombination: genießen Sie Öl- und Fußmassage in einer Behandlung.' },
+  { id: 9, name: 'Spezial-Massage mit vier Händen', desc: 'Außergewöhnliches Erlebnis: zwei Therapeuten, vollkommene Harmonie.' },
+  { id: 10, name: 'Paarmassage', desc: 'Entspannen Sie gemeinsam — das perfekte Geschenk für zwei.' },
 ];
 
 const PRICING = [
@@ -278,21 +279,26 @@ export default function Home() {
       {/* Services Section */}
       <AnimatedSection id="anwendungen" className="py-24 bg-card">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-accent font-semibold tracking-widest uppercase text-sm mb-4 block">Unser Angebot</span>
-            <h2 className="font-display text-4xl md:text-5xl text-primary font-medium mb-6">Anwendungen</h2>
-            <p className="text-foreground/70 text-lg">Entdecken Sie unsere vielfältigen Massagen für Ihr individuelles Wohlbefinden.</p>
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-20 items-end mb-16">
+            <div>
+              <span className="text-accent font-semibold tracking-widest uppercase text-sm mb-4 block">Unser Angebot</span>
+              <h2 className="font-display text-4xl md:text-5xl text-primary font-medium mb-6">Anwendungen</h2>
+              <p className="text-foreground/70 text-lg leading-relaxed max-w-xl">Jede Behandlung wird mit Ruhe, Sorgfalt und viel Erfahrung ausgeführt. Finden Sie die Massage, die zu Ihrem Körper und Ihrem Moment passt.</p>
+            </div>
+            <div className="relative h-56 md:h-72 rounded-3xl overflow-hidden shadow-lg">
+              <img src={applicationsImg} alt="Ruhiger Wellnessbereich mit Handtüchern und Lotusblüte" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent" />
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {TREATMENTS.map((t) => (
-              <div key={t.id} className="bg-background rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow border border-border group">
-                {t.icon && (
-                  <div className="text-4xl mb-6 bg-muted w-16 h-16 rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                    {t.icon}
-                  </div>
-                )}
-                <h3 className="font-display text-2xl text-primary font-semibold mb-3">{t.name}</h3>
+              <div key={t.id} className="bg-background rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-border group">
+                <div className="flex items-start justify-between gap-5 mb-8">
+                  <span className="text-xs font-semibold tracking-[0.2em] text-secondary/80">0{t.id}</span>
+                  <ArrowRight size={19} className="text-secondary/50 group-hover:text-secondary group-hover:translate-x-1 transition-all" />
+                </div>
+                <h3 className="font-display text-2xl text-primary font-semibold mb-3 leading-tight">{t.name}</h3>
                 <p className="text-foreground/70 leading-relaxed">{t.desc}</p>
               </div>
             ))}
