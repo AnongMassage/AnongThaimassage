@@ -5,7 +5,7 @@ import { AnimatedSection } from '@/components/animated-section';
 import { MapPin, Phone, Mail, Instagram, Facebook, Clock, Menu, X, ArrowRight, CheckCircle2 } from 'lucide-react';
 import anongLogo from '@assets/anong_logo_new.png';
 import heroBg from '@assets/hero_massage_room.jpg';
-import aboutImg from '@assets/about_masseuse.jpg';
+import aboutImg from '@assets/IMG_4277.JPG';
 
 const TREATMENTS = [
   { id: 1, name: 'Traditionelle Thai-Massage', desc: 'Klassische Druckpunkt- und Dehnmassage, die Verspannungen löst und die Lebensenergie neu ausbalanciert.', icon: '💆‍♀️' },
