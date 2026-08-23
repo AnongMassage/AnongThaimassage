@@ -7,18 +7,28 @@ import anongLogo from '@assets/anong_logo_new.png';
 import heroBg from '@assets/hero_massage_room.jpg';
 import aboutImg from '@assets/IMG_4277.JPG';
 import applicationsImg from '@assets/applications_wellness.jpg';
+import traditionalThaiMassageImg from '@assets/treatments/traditional_thai_massage.jpg';
+import thaiOilMassageImg from '@assets/treatments/thai_oil_massage.jpg';
+import thaiAromaMassageImg from '@assets/treatments/thai_aroma_massage.jpg';
+import thaiSportMassageImg from '@assets/treatments/thai_sport_massage.jpg';
+import hotStoneMassageImg from '@assets/treatments/hot_stone_massage.jpg';
+import footReflexologyImg from '@assets/treatments/foot_reflexology.jpg';
+import headNeckMassageImg from '@assets/treatments/head_neck_massage.jpg';
+import combinationMassageImg from '@assets/treatments/combination_massage.jpg';
+import fourHandsMassageImg from '@assets/treatments/four_hands_massage.jpg';
+import couplesMassageImg from '@assets/treatments/couples_massage.jpg';
 
 const TREATMENTS = [
-  { id: 1, name: 'Traditionelle Thai-Massage', desc: 'Klassische Druckpunkt- und Dehnmassage, die Verspannungen löst und die Lebensenergie neu ausbalanciert.' },
-  { id: 2, name: 'Thai-Ölmassage', desc: 'Sanfte Ölmassage für tiefe Entspannung von Körper und Geist.' },
-  { id: 3, name: 'Thai-Aromamassage', desc: 'Wohltuende Ölmassage mit warmen, aromatischen Ölen für alle Sinne.' },
-  { id: 4, name: 'Thai-Sport-Massage', desc: 'Intensive Tiefenmassage für aktive Menschen — ideal zur Regeneration.' },
-  { id: 5, name: 'Hot-Stone-Massage', desc: 'Wärme trifft Entspannung: erhitzte Basaltsteine lösen tief sitzende Muskelverspannungen.' },
-  { id: 6, name: 'Fußreflexzonenmassage', desc: 'Gezielte Reize an den Fußpunkten, die den gesamten Körper vitalisieren.' },
-  { id: 7, name: 'Kopf-, Schulter- & Nackenmassage', desc: 'Gezielte Entspannung für die am stärksten beanspruchten Körperzonen.' },
-  { id: 8, name: 'Kombi-Massage (Öl + Fuß)', desc: 'Die beste Kombination: genießen Sie Öl- und Fußmassage in einer Behandlung.' },
-  { id: 9, name: 'Spezial-Massage mit vier Händen', desc: 'Außergewöhnliches Erlebnis: zwei Therapeuten, vollkommene Harmonie.' },
-  { id: 10, name: 'Paarmassage', desc: 'Entspannen Sie gemeinsam — das perfekte Geschenk für zwei.' },
+  { id: 1, name: 'Traditionelle Thai-Massage', desc: 'Klassische Druckpunkt- und Dehnmassage, die Verspannungen löst und die Lebensenergie neu ausbalanciert.', image: traditionalThaiMassageImg },
+  { id: 2, name: 'Thai-Ölmassage', desc: 'Sanfte Ölmassage für tiefe Entspannung von Körper und Geist.', image: thaiOilMassageImg },
+  { id: 3, name: 'Thai-Aromamassage', desc: 'Wohltuende Ölmassage mit warmen, aromatischen Ölen für alle Sinne.', image: thaiAromaMassageImg },
+  { id: 4, name: 'Thai-Sport-Massage', desc: 'Intensive Tiefenmassage für aktive Menschen — ideal zur Regeneration.', image: thaiSportMassageImg },
+  { id: 5, name: 'Hot-Stone-Massage', desc: 'Wärme trifft Entspannung: erhitzte Basaltsteine lösen tief sitzende Muskelverspannungen.', image: hotStoneMassageImg },
+  { id: 6, name: 'Fußreflexzonenmassage', desc: 'Gezielte Reize an den Fußpunkten, die den gesamten Körper vitalisieren.', image: footReflexologyImg },
+  { id: 7, name: 'Kopf-, Schulter- & Nackenmassage', desc: 'Gezielte Entspannung für die am stärksten beanspruchten Körperzonen.', image: headNeckMassageImg },
+  { id: 8, name: 'Kombi-Massage (Öl + Fuß)', desc: 'Die beste Kombination: genießen Sie Öl- und Fußmassage in einer Behandlung.', image: combinationMassageImg },
+  { id: 9, name: 'Spezial-Massage mit vier Händen', desc: 'Außergewöhnliches Erlebnis: zwei Therapeuten, vollkommene Harmonie.', image: fourHandsMassageImg },
+  { id: 10, name: 'Paarmassage', desc: 'Entspannen Sie gemeinsam — das perfekte Geschenk für zwei.', image: couplesMassageImg },
 ];
 
 const PRICING = [
@@ -291,15 +301,26 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
             {TREATMENTS.map((t) => (
-              <div key={t.id} className="bg-background rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-border group">
-                <div className="mb-8">
-                  <span className="text-xs font-semibold tracking-[0.2em] text-secondary/80">0{t.id}</span>
+              <article key={t.id} className="bg-background rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-border group flex flex-col">
+                <div className="relative h-60 overflow-hidden">
+                  <img
+                    src={t.image}
+                    alt={t.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/50 via-primary/5 to-transparent" />
+                  <span className="absolute top-5 left-5 bg-background/90 backdrop-blur-sm text-primary text-xs font-semibold tracking-[0.18em] px-3 py-2 rounded-full">
+                    0{t.id}
+                  </span>
                 </div>
-                <h3 className="font-display text-2xl text-primary font-semibold mb-3 leading-tight">{t.name}</h3>
-                <p className="text-foreground/70 leading-relaxed">{t.desc}</p>
-              </div>
+                <div className="p-7 md:p-8 flex flex-col flex-1">
+                  <h3 className="font-display text-2xl text-primary font-semibold mb-3 leading-tight">{t.name}</h3>
+                  <p className="text-foreground/70 leading-relaxed">{t.desc}</p>
+                </div>
+              </article>
             ))}
           </div>
         </div>
