@@ -497,7 +497,7 @@ export default function Home() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/50 via-primary/5 to-transparent" />
                   <span className="absolute top-5 left-5 bg-background/90 backdrop-blur-sm text-primary text-xs font-semibold tracking-[0.18em] px-3 py-2 rounded-full">
-                    0{t.id}
+                    {String(t.id).padStart(2, "0")}
                   </span>
                 </div>
                 <div className="p-7 md:p-8 flex flex-col flex-1">
@@ -695,7 +695,7 @@ export default function Home() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
+                      <div className="space-y-2 min-w-0">
                         <label htmlFor="datum" className="text-sm font-medium">
                           Wunschdatum *
                         </label>
@@ -707,7 +707,7 @@ export default function Home() {
                           min={todayStr}
                           onChange={handleDateChange}
                           onKeyDown={(e) => e.preventDefault()} // prevent manual typing of invalid dates
-                          className="w-full px-4 py-3 rounded-xl border border-border bg-card focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-shadow"
+                          className="box-border w-full max-w-full min-w-0 px-4 py-3 rounded-xl border border-border bg-card focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-shadow"
                         />
                         {selectedDayOfWeek === 2 && (
                           <p className="text-destructive text-xs mt-1">

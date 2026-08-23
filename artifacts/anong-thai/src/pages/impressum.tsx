@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 import { ArrowLeft } from 'lucide-react';
-import anongLogo from '@assets/anong_logo.jpg';
+import anongLogo from '@assets/anong_logo_new.png';
 export default function Impressum() {
   return (
     <div className="min-h-screen bg-background text-foreground py-20 px-6">
@@ -10,7 +10,7 @@ export default function Impressum() {
         </Link>
 
         <div className="mb-12 flex justify-center">
-          <img src={anongLogo} alt="Logo" className="w-20 h-20 rounded-full" />
+          <img src={anongLogo} alt="Anong Thai-Massage Logo" className="w-20 h-20 object-contain" />
         </div>
         <h1 className="font-display text-4xl text-primary font-medium mb-8 text-center">Impressum</h1>
 
