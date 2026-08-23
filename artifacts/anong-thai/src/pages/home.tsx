@@ -294,9 +294,8 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {TREATMENTS.map((t) => (
               <div key={t.id} className="bg-background rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-border group">
-                <div className="flex items-start justify-between gap-5 mb-8">
+                <div className="mb-8">
                   <span className="text-xs font-semibold tracking-[0.2em] text-secondary/80">0{t.id}</span>
-                  <ArrowRight size={19} className="text-secondary/50 group-hover:text-secondary group-hover:translate-x-1 transition-all" />
                 </div>
                 <h3 className="font-display text-2xl text-primary font-semibold mb-3 leading-tight">{t.name}</h3>
                 <p className="text-foreground/70 leading-relaxed">{t.desc}</p>
