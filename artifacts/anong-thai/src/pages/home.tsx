@@ -810,7 +810,7 @@ export default function Home() {
               Kontakt & Öffnungszeiten
             </h2>
             <p className="text-foreground/60 text-lg">
-              Besuchen Sie uns in der Metzgerstrasse 12 – direkt im Herzen von
+              Besuchen Sie uns in der Metzgerstraße 12 – direkt im Herzen von
               Reutlingen.
             </p>
           </div>
@@ -902,7 +902,7 @@ export default function Home() {
                     Adresse
                   </p>
                   <p className="text-foreground font-medium leading-relaxed">
-                    Metzgerstrasse 12
+                    Metzgerstraße 12
                     <br />
                     <span className="text-sm text-foreground/70">
                       1. Etage · 72764 Reutlingen
