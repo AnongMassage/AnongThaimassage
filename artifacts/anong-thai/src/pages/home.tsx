@@ -8,10 +8,10 @@ import heroBg from '@assets/hero_massage_room.jpg';
 import aboutImg from '@assets/IMG_4277.JPG';
 
 const TREATMENTS = [
-  { id: 1, name: 'Traditionelle Thai-Massage', desc: 'Klassische Druckpunkt- und Dehnmassage, die Verspannungen löst und die Lebensenergie neu ausbalanciert.', icon: '💆‍♀️' },
+  { id: 1, name: 'Traditionelle Thai-Massage', desc: 'Klassische Druckpunkt- und Dehnmassage, die Verspannungen löst und die Lebensenergie neu ausbalanciert.' },
   { id: 2, name: 'Thai-Ölmassage', desc: 'Sanfte Ölmassage für tiefe Entspannung von Körper und Geist.', icon: '🌿' },
   { id: 3, name: 'Thai-Aromamassage', desc: 'Wohltuende Ölmassage mit warmen, aromatischen Ölen für alle Sinne.', icon: '🌸' },
-  { id: 4, name: 'Thai-Sport-Massage', desc: 'Intensive Tiefenmassage für aktive Menschen — ideal zur Regeneration.', icon: '💪' },
+  { id: 4, name: 'Thai-Sport-Massage', desc: 'Intensive Tiefenmassage für aktive Menschen — ideal zur Regeneration.' },
   { id: 5, name: 'Hot-Stone-Massage', desc: 'Wärme trifft Entspannung: erhitzte Basaltsteine lösen tief sitzende Muskelverspannungen.', icon: '🪨' },
   { id: 6, name: 'Fußreflexzonenmassage', desc: 'Gezielte Reize an den Fußpunkten, die den gesamten Körper vitalisieren.', icon: '👣' },
   { id: 7, name: 'Kopf-, Schulter- & Nackenmassage', desc: 'Gezielte Entspannung für die am stärksten beanspruchten Körperzonen.', icon: '🧘‍♀️' },
@@ -287,9 +287,11 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {TREATMENTS.map((t) => (
               <div key={t.id} className="bg-background rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow border border-border group">
-                <div className="text-4xl mb-6 bg-muted w-16 h-16 rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                  {t.icon}
-                </div>
+                {t.icon && (
+                  <div className="text-4xl mb-6 bg-muted w-16 h-16 rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                    {t.icon}
+                  </div>
+                )}
                 <h3 className="font-display text-2xl text-primary font-semibold mb-3">{t.name}</h3>
                 <p className="text-foreground/70 leading-relaxed">{t.desc}</p>
               </div>
