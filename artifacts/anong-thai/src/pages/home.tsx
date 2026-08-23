@@ -338,7 +338,6 @@ export default function Home() {
           </button>
         </div>
       </header>
-
       {/* Mobile Nav Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
@@ -366,7 +365,6 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
-
       {/* Hero Section */}
       <section className="relative h-[100dvh] min-h-[600px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -412,7 +410,6 @@ export default function Home() {
           </motion.button>
         </div>
       </section>
-
       {/* About Section */}
       <AnimatedSection
         id="über-uns"
@@ -458,7 +455,6 @@ export default function Home() {
           </div>
         </div>
       </AnimatedSection>
-
       {/* Services Section */}
       <AnimatedSection id="anwendungen" className="py-24 bg-card">
         <div className="container mx-auto px-6 md:px-12">
@@ -515,7 +511,6 @@ export default function Home() {
           </div>
         </div>
       </AnimatedSection>
-
       {/* Pricing Section */}
       <AnimatedSection id="preise" className="py-24 bg-background">
         <div className="container mx-auto px-6 md:px-12 max-w-5xl">
@@ -566,7 +561,6 @@ export default function Home() {
           </div>
         </div>
       </AnimatedSection>
-
       {/* Booking Form Section */}
       <AnimatedSection
         id="termin"
@@ -756,9 +750,7 @@ export default function Home() {
                       <label
                         htmlFor="nachricht"
                         className="text-sm font-medium"
-                      >
-                        Nachricht (optional)
-                      </label>
+                      >Alternativtermin bitte angeben</label>
                       <textarea
                         id="nachricht"
                         name="nachricht"
@@ -800,7 +792,6 @@ export default function Home() {
           </div>
         </div>
       </AnimatedSection>
-
       {/* Opening Hours & Contact Section */}
       <AnimatedSection id="kontakt" className="py-24 bg-card">
         <div className="container mx-auto px-6 md:px-12">
@@ -981,7 +972,6 @@ export default function Home() {
           </div>
         </div>
       </AnimatedSection>
-
       {/* Footer */}
       <footer className="bg-primary text-primary-foreground py-12 mt-auto">
         <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
