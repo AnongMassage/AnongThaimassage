@@ -18,14 +18,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body>
-    <form name="buchung" netlify netlify-honeypot="bot-field" hidden>
+    <form name="buchung" data-netlify="true" hidden>
       <input type="text" name="name" />
       <input type="email" name="email" />
       <input type="tel" name="telefon" />
-      <select name="behandlung"></select>
+      <input type="text" name="behandlung" />
       <input type="date" name="datum" />
-      <input type="time" name="uhrzeit" />
+      <input type="text" name="uhrzeit" />
       <textarea name="nachricht"></textarea>
+      <input type="text" name="bot-field" />
     </form>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
