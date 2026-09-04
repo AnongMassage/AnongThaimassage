@@ -59,9 +59,11 @@ export async function handler(event) {
   // ⚠️ ANPASSEN, falls eure echten Formular-Feldnamen anders heißen.
   const name = data.name || data.Name || '';
   const email = data.email || data.Email || '';
+  const phone = data.telefon || '';
+  const treatment = data.behandlung || '';
   const date = data.date || data.datum || '';
   const time = data.time || data.uhrzeit || '';
-  const notes = data.notes || data.anmerkungen || data.message || '';
+  const notes = data.notes || data.anmerkungen || data.message || data.nachricht || '';
 
   if (!email || !date || !time) {
     console.error('Pflichtfelder fehlen, breche ab.', { name, email, date, time });
@@ -78,6 +80,8 @@ export async function handler(event) {
       <h2 style="color:#8a5a2b;">Neue Terminanfrage</h2>
       <p><strong>Name:</strong> ${escapeHtml(name)}<br/>
          <strong>E-Mail:</strong> ${escapeHtml(email)}<br/>
+          <strong>Telefon:</strong> ${escapeHtml(phone)}<br/>
+          <strong>Behandlung:</strong> ${escapeHtml(treatment)}<br/>
          <strong>Angefragter Termin:</strong> ${escapeHtml(date)}, ${escapeHtml(time)} Uhr</p>
       ${notes ? `<p><strong>Anmerkung des Kunden:</strong><br/>${escapeHtml(notes)}</p>` : ''}
       <div style="margin:28px 0;">
