@@ -16,21 +16,32 @@
 //
 // Jeder Link ist signiert (siehe sign()), damit niemand durch Verändern
 // der URL eine falsche Aktion auslösen kann.
+//
+// E-Mail-Versand läuft über das bestehende web.de-Postfach (SMTP via
+// nodemailer), nicht mehr über Resend.
 
 import crypto from 'node:crypto';
+import nodemailer from 'nodemailer';
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY;
+const EMAIL_USER = process.env.EMAIL_USER;
+const EMAIL_PASS = process.env.EMAIL_PASS;
 const BUSINESS_EMAIL = process.env.BUSINESS_EMAIL;
-const FROM_EMAIL = process.env.FROM_EMAIL || 'Anong Thai-Massage <onboarding@resend.dev>';
 const LINK_SECRET = process.env.LINK_SECRET;
 const SITE_URL = process.env.URL; // von Netlify automatisch gesetzt
+
+const transporter = nodemailer.createTransport({
+  host: 'smtp.web.de',
+  port: 587,
+  secure: false, // STARTTLS
+  auth: { user: EMAIL_USER, pass: EMAIL_PASS },
+});
 
 export async function handler(event) {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
-  if (!RESEND_API_KEY || !BUSINESS_EMAIL || !LINK_SECRET) {
-    console.error('RESEND_API_KEY, BUSINESS_EMAIL oder LINK_SECRET fehlt.');
+  if (!EMAIL_USER || !EMAIL_PASS || !BUSINESS_EMAIL || !LINK_SECRET) {
+    console.error('EMAIL_USER, EMAIL_PASS, BUSINESS_EMAIL oder LINK_SECRET fehlt.');
     return { statusCode: 500, body: 'Server nicht korrekt konfiguriert.' };
   }
 
@@ -87,19 +98,15 @@ export async function handler(event) {
       automatisch die passende Mail von uns.</p>
     </div>`;
 
-  const resendResponse = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      from: FROM_EMAIL,
-      to: [BUSINESS_EMAIL],
+  try {
+    await transporter.sendMail({
+      from: `"Anong Thai-Massage" <${EMAIL_USER}>`,
+      to: BUSINESS_EMAIL,
       subject: `Neue Terminanfrage: ${name || email}`,
       html,
-    }),
-  });
-
-  if (!resendResponse.ok) {
-    console.error('Resend-Fehler:', resendResponse.status, await resendResponse.text());
+    });
+  } catch (err) {
+    console.error('SMTP-Fehler:', err);
     return { statusCode: 502, body: 'Mail konnte nicht verschickt werden.' };
   }
 
