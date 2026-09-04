@@ -11,14 +11,24 @@
 //
 // Jede Aktion prüft zuerst die Signatur, damit niemand durch Verändern der
 // URL eine andere Aktion/andere Daten auslösen kann.
+//
+// E-Mail-Versand läuft über das bestehende web.de-Postfach (SMTP via
+// nodemailer), nicht mehr über Resend.
 
 import crypto from 'node:crypto';
+import nodemailer from 'nodemailer';
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const BUSINESS_EMAIL = process.env.BUSINESS_EMAIL;
-const FROM_EMAIL = process.env.FROM_EMAIL || 'Anong Thai-Massage <onboarding@resend.dev>';
+const EMAIL_USER = process.env.EMAIL_USER;
+const EMAIL_PASS = process.env.EMAIL_PASS;
 const LINK_SECRET = process.env.LINK_SECRET;
 const SITE_URL = process.env.URL;
+
+const transporter = nodemailer.createTransport({
+  host: 'smtp.web.de',
+  port: 587,
+  secure: false, // STARTTLS
+  auth: { user: EMAIL_USER, pass: EMAIL_PASS },
+});
 
 export async function handler(event) {
   const params =
@@ -120,13 +130,15 @@ async function sendCustomerDecline({ name, email, date }) {
 }
 
 async function sendMail(to, subject, html) {
-  const res = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: FROM_EMAIL, to: [to], subject, html }),
-  });
-  if (!res.ok) {
-    console.error('Resend-Fehler:', res.status, await res.text());
+  try {
+    await transporter.sendMail({
+      from: `"Anong Thai-Massage" <${EMAIL_USER}>`,
+      to,
+      subject,
+      html,
+    });
+  } catch (err) {
+    console.error('SMTP-Fehler:', err);
     throw new Error('Mailversand fehlgeschlagen');
   }
 }
