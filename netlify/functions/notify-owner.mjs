@@ -1,24 +1,21 @@
 // netlify/functions/notify-owner.mjs
 //
 // Wird automatisch aufgerufen, sobald über das Buchungsformular eine neue
-// Terminanfrage eingeht (Netlify "Outgoing Webhook" auf das Formular,
-// siehe SETUP.md). Verschickt eine Mail ANS MASSAGESTUDIO mit drei
+// Terminanfrage eingeht (Netlify "HTTP POST request"-Benachrichtigung auf
+// das Formular). Verschickt eine Mail ANS MASSAGESTUDIO mit drei
 // klickbaren Optionen:
 //
 //   1. "Termin bestätigen"            -> bestätigt den angefragten Termin
 //   2. "Alternativtermin bestätigen"  -> öffnet ein kleines Formular, in
 //                                        das Saranya den tatsächlich
 //                                        vereinbarten Termin einträgt
-//                                        (z.B. den in den Anmerkungen
-//                                        genannten) - wird NIE automatisch
-//                                        aus dem Freitext geraten
 //   3. "Termin geht leider nicht"     -> schickt dem Kunden eine Absage
 //
 // Jeder Link ist signiert (siehe sign()), damit niemand durch Verändern
 // der URL eine falsche Aktion auslösen kann.
 //
 // E-Mail-Versand läuft über das bestehende web.de-Postfach (SMTP via
-// nodemailer), nicht mehr über Resend.
+// nodemailer).
 
 import crypto from 'node:crypto';
 import nodemailer from 'nodemailer';
@@ -56,14 +53,14 @@ export async function handler(event) {
   console.log('Eingehender Webhook-Payload:', JSON.stringify(body));
   const data = body?.payload?.data || body?.data || {};
 
-  // ⚠️ ANPASSEN, falls eure echten Formular-Feldnamen anders heißen.
+  // Feldnamen passend zum echten Formular (Home.tsx).
   const name = data.name || data.Name || '';
   const email = data.email || data.Email || '';
-  const phone = data.telefon || '';
-  const treatment = data.behandlung || '';
+  const phone = data.telefon || data.phone || '';
+  const treatment = data.behandlung || data.treatment || '';
   const date = data.date || data.datum || '';
   const time = data.time || data.uhrzeit || '';
-  const notes = data.notes || data.anmerkungen || data.message || data.nachricht || '';
+  const notes = data.nachricht || data.notes || data.anmerkungen || data.message || '';
 
   if (!email || !date || !time) {
     console.error('Pflichtfelder fehlen, breche ab.', { name, email, date, time });
@@ -80,8 +77,8 @@ export async function handler(event) {
       <h2 style="color:#8a5a2b;">Neue Terminanfrage</h2>
       <p><strong>Name:</strong> ${escapeHtml(name)}<br/>
          <strong>E-Mail:</strong> ${escapeHtml(email)}<br/>
-          <strong>Telefon:</strong> ${escapeHtml(phone)}<br/>
-          <strong>Behandlung:</strong> ${escapeHtml(treatment)}<br/>
+         ${phone ? `<strong>Telefon:</strong> ${escapeHtml(phone)}<br/>` : ''}
+         ${treatment ? `<strong>Behandlung:</strong> ${escapeHtml(treatment)}<br/>` : ''}
          <strong>Angefragter Termin:</strong> ${escapeHtml(date)}, ${escapeHtml(time)} Uhr</p>
       ${notes ? `<p><strong>Anmerkung des Kunden:</strong><br/>${escapeHtml(notes)}</p>` : ''}
       <div style="margin:28px 0;">
