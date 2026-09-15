@@ -1,24 +1,19 @@
 // netlify/functions/booking-owner-action.mjs
 //
 // Ziel der drei Buttons aus der Mail an das Massagestudio (notify-owner.mjs).
-// Jede Aktion führt jetzt zuerst zu einer kleinen Zwischenseite mit einem
-// optionalen Textfeld ("Persönliche Nachricht") - damit Saranya z.B. auf
-// einen Kommentar des Kunden eingehen kann, bevor die Mail verschickt wird.
-//
-// - action=confirm      (GET)  -> Zwischenseite mit optionalem Nachrichtenfeld
-// - action=confirm-send (POST) -> verschickt die Bestätigung (+ ggf. Nachricht)
-// - action=decline      (GET)  -> Zwischenseite mit optionalem Nachrichtenfeld
-// - action=decline-send (POST) -> verschickt die Absage (+ ggf. Nachricht)
-// - action=alt-form     (GET)  -> Formular für Alternativtermin + Nachricht
-// - action=alt-confirm  (POST) -> verschickt Bestätigung mit Alternativtermin
+// - action=confirm    (GET)  -> bestätigt den angefragten Termin beim Kunden
+// - action=decline    (GET)  -> sagt dem Kunden ab, bittet um neuen Termin
+// - action=alt-form   (GET)  -> zeigt Saranya ein kleines Formular, um den
+//                                tatsächlich vereinbarten Alternativtermin
+//                                einzutragen (z.B. den aus den Anmerkungen)
+// - action=alt-confirm(POST) -> verschickt die Bestätigung mit dem von
+//                                Saranya eingetragenen Alternativtermin
 //
 // Jede Aktion prüft zuerst die Signatur, damit niemand durch Verändern der
-// URL eine andere Aktion/andere Daten auslösen kann. Die Nachricht selbst
-// ist bewusst nicht Teil der Signatur (freier Text von Saranya, die sich ja
-// bereits über den signierten Link authentisiert hat).
+// URL eine andere Aktion/andere Daten auslösen kann.
 //
 // E-Mail-Versand läuft über das bestehende web.de-Postfach (SMTP via
-// nodemailer).
+// nodemailer), nicht mehr über Resend.
 
 import crypto from 'node:crypto';
 import nodemailer from 'nodemailer';
@@ -47,60 +42,37 @@ export async function handler(event) {
     return page('Fehlerhafter Link', '<p>Dieser Link ist unvollständig oder ungültig.</p>');
   }
 
-  // Die Signatur bezieht sich immer nur auf die ursprünglichen, aus der
-  // Owner-Mail stammenden Felder - nicht auf action-send-Varianten oder die
-  // freie Nachricht.
-  const baseAction =
-    action === 'confirm-send' ? 'confirm' :
-    action === 'decline-send' ? 'decline' :
-    action === 'alt-confirm' ? 'alt-form' :
-    action;
-  const signedFields = { action: baseAction, name, email, date, time };
+  // alt-confirm hat zusätzlich altDate/altTime, die nicht signiert sind
+  // (Saranya trägt sie im Formular ein). Die Signatur bezieht sich immer
+  // nur auf die ursprünglichen, aus der Owner-Mail stammenden Felder.
+  const signedFields = { action: action === 'alt-confirm' ? 'alt-form' : action, name, email, date, time };
   if (!verify(signedFields, sig)) {
     return page('Ungültiger Link', '<p>Die Signatur dieses Links ist ungültig oder wurde manipuliert.</p>');
   }
 
-  // --- Schritt 1: Zwischenseiten mit optionalem Nachrichtenfeld ---
-
   if (action === 'confirm') {
-    return messageFormPage({
-      title: 'Termin bestätigen',
-      intro: `<p>Termin: <strong>${escapeHtml(date)}, ${escapeHtml(time)} Uhr</strong> für ${escapeHtml(name)} (${escapeHtml(email)})</p>`,
-      nextAction: 'confirm-send',
-      buttonLabel: 'Bestätigung jetzt senden',
-      buttonColor: '#2e7d32',
-      fields: signedFields,
-      sig,
-    });
+    await sendCustomerConfirmation({ name, email, date, time });
+    return page('Termin bestätigt', `<p>Die Bestätigungsmail für <strong>${escapeHtml(date)}, ${escapeHtml(time)} Uhr</strong> wurde an ${escapeHtml(email)} verschickt.</p>`);
   }
 
   if (action === 'decline') {
-    return messageFormPage({
-      title: 'Termin absagen',
-      intro: `<p>Angefragter Termin: <strong>${escapeHtml(date)}, ${escapeHtml(time)} Uhr</strong> für ${escapeHtml(name)} (${escapeHtml(email)})</p>`,
-      nextAction: 'decline-send',
-      buttonLabel: 'Absage jetzt senden',
-      buttonColor: '#c62828',
-      fields: signedFields,
-      sig,
-    });
+    await sendCustomerDecline({ name, email, date, time });
+    return page('Absage verschickt', `<p>Dem Kunden wurde mitgeteilt, dass der Termin am ${escapeHtml(date)} leider nicht möglich ist, und er um einen neuen Termin gebeten.</p>`);
   }
 
   if (action === 'alt-form') {
+    const hiddenSig = sign(signedFields);
     return page(
       'Alternativtermin eintragen',
-      `<form method="POST" action="/.netlify/functions/booking-owner-action" style="display:flex;flex-direction:column;gap:12px;max-width:360px;">
+      `<form method="POST" action="/.netlify/functions/booking-owner-action" style="display:flex;flex-direction:column;gap:12px;max-width:320px;">
         <input type="hidden" name="action" value="alt-confirm" />
         <input type="hidden" name="name" value="${escapeHtml(name)}" />
         <input type="hidden" name="email" value="${escapeHtml(email)}" />
         <input type="hidden" name="date" value="${escapeHtml(date)}" />
         <input type="hidden" name="time" value="${escapeHtml(time)}" />
-        <input type="hidden" name="sig" value="${sig}" />
+        <input type="hidden" name="sig" value="${hiddenSig}" />
         <label>Vereinbartes Datum<br/><input type="date" name="altDate" required /></label>
         <label>Vereinbarte Uhrzeit<br/><input type="time" name="altTime" required /></label>
-        <label>Persönliche Nachricht (optional)<br/>
-          <textarea name="customMessage" rows="4" style="width:100%;font-family:inherit;" placeholder="z.B. Antwort auf den Kommentar des Kunden..."></textarea>
-        </label>
         <button type="submit" style="padding:10px 16px;background:#8a5a2b;color:#fff;border:none;border-radius:6px;cursor:pointer;">
           Bestätigungsmail mit diesem Termin senden
         </button>
@@ -108,52 +80,19 @@ export async function handler(event) {
     );
   }
 
-  // --- Schritt 2: tatsächlicher Versand ---
-
-  if (action === 'confirm-send') {
-    await sendCustomerConfirmation({ name, email, date, time, customMessage: params.customMessage });
-    return page('Termin bestätigt', `<p>Die Bestätigungsmail für <strong>${escapeHtml(date)}, ${escapeHtml(time)} Uhr</strong> wurde an ${escapeHtml(email)} verschickt.</p>`);
-  }
-
-  if (action === 'decline-send') {
-    await sendCustomerDecline({ name, email, date, customMessage: params.customMessage });
-    return page('Absage verschickt', `<p>Dem Kunden wurde mitgeteilt, dass der Termin am ${escapeHtml(date)} leider nicht möglich ist.</p>`);
-  }
-
   if (action === 'alt-confirm') {
-    const { altDate, altTime, customMessage } = params;
+    const { altDate, altTime } = params;
     if (!altDate || !altTime) {
       return page('Angaben fehlen', '<p>Bitte Datum und Uhrzeit ausfüllen.</p>');
     }
-    await sendCustomerConfirmation({ name, email, date: altDate, time: altTime, isAlternative: true, customMessage });
+    await sendCustomerConfirmation({ name, email, date: altDate, time: altTime, isAlternative: true });
     return page('Alternativtermin bestätigt', `<p>Die Bestätigungsmail für den neu vereinbarten Termin am <strong>${escapeHtml(altDate)}, ${escapeHtml(altTime)} Uhr</strong> wurde an ${escapeHtml(email)} verschickt.</p>`);
   }
 
   return page('Unbekannte Aktion', '<p>Diese Aktion wird nicht unterstützt.</p>');
 }
 
-function messageFormPage({ title, intro, nextAction, buttonLabel, buttonColor, fields, sig }) {
-  return page(
-    title,
-    `${intro}
-    <form method="POST" action="/.netlify/functions/booking-owner-action" style="display:flex;flex-direction:column;gap:12px;max-width:360px;margin-top:16px;">
-      <input type="hidden" name="action" value="${nextAction}" />
-      <input type="hidden" name="name" value="${escapeHtml(fields.name)}" />
-      <input type="hidden" name="email" value="${escapeHtml(fields.email)}" />
-      <input type="hidden" name="date" value="${escapeHtml(fields.date)}" />
-      <input type="hidden" name="time" value="${escapeHtml(fields.time)}" />
-      <input type="hidden" name="sig" value="${sig}" />
-      <label>Persönliche Nachricht (optional)<br/>
-        <textarea name="customMessage" rows="4" style="width:100%;font-family:inherit;" placeholder="z.B. Antwort auf den Kommentar des Kunden..."></textarea>
-      </label>
-      <button type="submit" style="padding:10px 16px;background:${buttonColor};color:#fff;border:none;border-radius:6px;cursor:pointer;">
-        ${buttonLabel}
-      </button>
-    </form>`
-  );
-}
-
-async function sendCustomerConfirmation({ name, email, date, time, isAlternative, customMessage }) {
+async function sendCustomerConfirmation({ name, email, date, time, isAlternative }) {
   const cancelParams = { action: 'cancel', name, email, date, time };
   const cancelSig = sign(cancelParams);
   const cancelLink = `${SITE_URL}/.netlify/functions/booking-cancel?${new URLSearchParams({ ...cancelParams, sig: cancelSig })}`;
@@ -164,9 +103,6 @@ async function sendCustomerConfirmation({ name, email, date, time, isAlternative
       <p>Hallo ${escapeHtml(name)},</p>
       <p>${isAlternative ? 'wir haben uns auf folgenden Termin geeinigt:' : 'dein Termin bei Anong Thai-Massage ist bestätigt:'}</p>
       <p style="font-size:18px;font-weight:bold;margin:8px 0 20px;">${escapeHtml(date)}, ${escapeHtml(time)} Uhr</p>
-      ${customMessage ? `<div style="background:#f5f0e8;border-radius:8px;padding:14px 16px;margin-bottom:20px;">
-        <p style="margin:0;white-space:pre-wrap;">${escapeHtml(customMessage)}</p>
-      </div>` : ''}
       <p>Solltest du doch verhindert sein:</p>
       <a href="${cancelLink}" style="display:inline-block;padding:12px 20px;background:#c62828;color:#fff;text-decoration:none;border-radius:6px;">
         Termin stornieren
@@ -177,17 +113,14 @@ async function sendCustomerConfirmation({ name, email, date, time, isAlternative
   await sendMail(email, 'Dein Termin bei Anong Thai-Massage ist bestätigt', html);
 }
 
-async function sendCustomerDecline({ name, email, date, customMessage }) {
+async function sendCustomerDecline({ name, email, date }) {
   const html = `
     <div style="font-family:sans-serif;max-width:480px;margin:auto;color:#222;">
       <h2 style="color:#c62828;">Dein Wunschtermin ist leider nicht verfügbar</h2>
       <p>Hallo ${escapeHtml(name)},</p>
       <p>leider ist dein angefragter Termin am ${escapeHtml(date)} bei uns nicht möglich.
       Bitte wähle gerne einen anderen Termin über unsere Website oder melde dich direkt bei uns.</p>
-      ${customMessage ? `<div style="background:#f5f0e8;border-radius:8px;padding:14px 16px;margin:16px 0;">
-        <p style="margin:0;white-space:pre-wrap;">${escapeHtml(customMessage)}</p>
-      </div>` : ''}
-      <a href="${SITE_URL}" style="display:inline-block;margin-top:8px;padding:12px 20px;background:#8a5a2b;color:#fff;text-decoration:none;border-radius:6px;">
+      <a href="${SITE_URL}" style="display:inline-block;margin-top:12px;padding:12px 20px;background:#8a5a2b;color:#fff;text-decoration:none;border-radius:6px;">
         Neuen Termin wählen
       </a>
       <p style="margin-top:24px;">Viele Grüße<br/>Anong Thai-Massage</p>

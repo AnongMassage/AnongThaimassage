@@ -608,25 +608,6 @@ export default function Home() {
                       Ihre Anfrage wurde erfolgreich gesendet. Wir melden uns in
                       Kürze zur Bestätigung Ihres Termins.
                     </p>
-                    <div className="mt-7 w-full max-w-xl rounded-2xl border border-amber-300 bg-amber-50 px-5 py-4 text-left text-amber-950 shadow-sm">
-                      <p className="font-bold">
-                        ⚠️ Wichtig: Du erhältst gleich zwei E-Mails:
-                      </p>
-                      <ul className="mt-3 list-disc space-y-2 pl-5">
-                        <li>
-                          Das Massage-Studio erhält deine Anfrage und wird dir
-                          antworten.
-                        </li>
-                        <li>
-                          Du erhältst dann die Bestätigung oder Absage vom
-                          Studio.
-                        </li>
-                      </ul>
-                      <p className="mt-3 font-semibold">
-                        Falls die E-Mails nicht in deinem Posteingang ankommen,
-                        überprüfe deinen Spam-/Werbe-Ordner!
-                      </p>
-                    </div>
                     <button
                       onClick={() => setBookingStatus("idle")}
                       className="mt-8 text-primary font-medium hover:underline"
