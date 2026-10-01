@@ -96,17 +96,17 @@ const PRICING = [
   {
     group: "Thai-Ölmassage",
     items: [
-      { dur: "60 Min", price: "45 €" },
-      { dur: "90 Min", price: "65 €" },
-      { dur: "120 Min", price: "85 €" },
+      { dur: "60 Min", price: "48 €" },
+      { dur: "90 Min", price: "68 €" },
+      { dur: "120 Min", price: "89 €" },
     ],
   },
   {
     group: "Thai-Aromamassage (warmes Öl)",
     items: [
-      { dur: "60 Min", price: "47 €" },
-      { dur: "90 Min", price: "68 €" },
-      { dur: "120 Min", price: "89 €" },
+      { dur: "60 Min", price: "53 €" },
+      { dur: "90 Min", price: "74 €" },
+      { dur: "120 Min", price: "98 €" },
     ],
   },
   {
@@ -120,45 +120,45 @@ const PRICING = [
   {
     group: "Hot-Stone-Massage",
     items: [
-      { dur: "60 Min", price: "50 €" },
-      { dur: "90 Min", price: "73 €" },
+      { dur: "60 Min", price: "57 €" },
+      { dur: "90 Min", price: "83 €" },
     ],
   },
   {
     group: "Kombi-Massage (Öl- + Fußmassage)",
     items: [
-      { dur: "90 Min", price: "65 €" },
-      { dur: "120 Min", price: "85 €" },
+      { dur: "90 Min", price: "68 €" },
+      { dur: "120 Min", price: "89 €" },
     ],
   },
   {
     group: "Spezial-Massage, vier Hände",
     items: [
-      { dur: "60 Min", price: "89 €" },
-      { dur: "90 Min", price: "127 €" },
+      { dur: "60 Min", price: "94 €" },
+      { dur: "90 Min", price: "132 €" },
     ],
   },
   {
     group: "Kopf-Schulter-Nacken",
     items: [
-      { dur: "30 Min", price: "25 €" },
-      { dur: "60 Min", price: "45 €" },
+      { dur: "30 Min", price: "28 €" },
+      { dur: "60 Min", price: "52 €" },
     ],
   },
   {
     group: "Fußmassage",
     items: [
-      { dur: "30 Min", price: "25 €" },
-      { dur: "60 Min", price: "45 €" },
+      { dur: "30 Min", price: "28 €" },
+      { dur: "60 Min", price: "52 €" },
     ],
   },
   {
     group: "Paarmassage",
     items: [
       { dur: "30 Min", price: "48 €" },
-      { dur: "60 Min", price: "86 €" },
-      { dur: "90 Min", price: "124 €" },
-      { dur: "120 Min", price: "162 €" },
+      { dur: "60 Min", price: "89 €" },
+      { dur: "90 Min", price: "127 €" },
+      { dur: "120 Min", price: "166 €" },
     ],
   },
 ];
