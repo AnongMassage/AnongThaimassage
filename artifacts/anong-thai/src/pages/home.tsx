@@ -21,7 +21,6 @@ import applicationsImg from "@assets/applications_wellness.jpg";
 import traditionalThaiMassageImg from "@assets/treatments-women/traditional_thai_massage_women.jpg";
 import thaiOilMassageImg from "@assets/treatments-women/thai_oil_massage_women.jpg";
 import thaiAromaMassageImg from "@assets/treatments-women/thai_aroma_massage_women.jpg";
-import thaiSportMassageImg from "@assets/treatments-women/thai_sport_massage_women.jpg";
 import hotStoneMassageImg from "@assets/treatments-women/hot_stone_massage_women.jpg";
 import footReflexologyImg from "@assets/treatments-women/foot_reflexology_women.jpg";
 import headNeckMassageImg from "@assets/treatments-women/head_neck_massage_women.jpg";
@@ -50,42 +49,36 @@ const TREATMENTS = [
   },
   {
     id: 4,
-    name: "Thai-Sport-Massage",
-    desc: "Intensive Tiefenmassage für aktive Menschen — ideal zur Regeneration.",
-    image: thaiSportMassageImg,
-  },
-  {
-    id: 5,
     name: "Hot-Stone-Massage",
     desc: "Wärme trifft Entspannung: erhitzte Basaltsteine lösen tief sitzende Muskelverspannungen.",
     image: hotStoneMassageImg,
   },
   {
-    id: 6,
+    id: 5,
     name: "Fußreflexzonenmassage",
     desc: "Gezielte Reize an den Fußpunkten, die den gesamten Körper vitalisieren.",
     image: footReflexologyImg,
   },
   {
-    id: 7,
+    id: 6,
     name: "Kopf-, Schulter- & Nackenmassage",
     desc: "Gezielte Entspannung für die am stärksten beanspruchten Körperzonen.",
     image: headNeckMassageImg,
   },
   {
-    id: 8,
+    id: 7,
     name: "Kombi-Massage (Öl + Fuß)",
     desc: "Die beste Kombination: genießen Sie Öl- und Fußmassage in einer Behandlung.",
     image: combinationMassageImg,
   },
   {
-    id: 9,
+    id: 8,
     name: "Spezial-Massage mit vier Händen",
     desc: "Außergewöhnliches Erlebnis: zwei Therapeuten, vollkommene Harmonie.",
     image: fourHandsMassageImg,
   },
   {
-    id: 10,
+    id: 9,
     name: "Paarmassage",
     desc: "Entspannen Sie gemeinsam — das perfekte Geschenk für zwei.",
     image: couplesMassageImg,
@@ -107,14 +100,6 @@ const PRICING = [
       { dur: "60 Min", price: "53 €" },
       { dur: "90 Min", price: "74 €" },
       { dur: "120 Min", price: "98 €" },
-    ],
-  },
-  {
-    group: "Thai-Sport-Massage",
-    items: [
-      { dur: "60 Min", price: "47 €" },
-      { dur: "90 Min", price: "68 €" },
-      { dur: "120 Min", price: "89 €" },
     ],
   },
   {
@@ -155,7 +140,6 @@ const PRICING = [
   {
     group: "Paarmassage",
     items: [
-      { dur: "30 Min", price: "48 €" },
       { dur: "60 Min", price: "89 €" },
       { dur: "90 Min", price: "127 €" },
       { dur: "120 Min", price: "166 €" },
